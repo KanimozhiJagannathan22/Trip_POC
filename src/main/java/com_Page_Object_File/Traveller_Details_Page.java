@@ -10,7 +10,6 @@ import org.openqa.selenium.support.PageFactory;
 import com_Base_File.Utility_File_MMT;
 
 public class Traveller_Details_Page extends Utility_File_MMT{
-	
 
 	@FindBy(xpath = "//input[@id='fname']") private WebElement TravellerName;
 	@FindBy(xpath = "//input[@id='age']") private WebElement TravellerAge;
@@ -30,7 +29,6 @@ private WebDriver driver;
 		PageFactory.initElements(driver, this);
 	}
 	
-	
 	public void Traveller_Data() throws InterruptedException, IOException {
 		Enter_Data(getTravellerName(), "Kanimozhi");
 		Enter_Data(getTravellerAge(), "25");
@@ -40,22 +38,20 @@ private WebDriver driver;
 		Click(getSelectState());
 		Click(getTamilnadu());
 		Click(getConfirmCheckbox());
-		Click(getTripAssured());
+		jsClick(getTripAssured());
 		
 		sleep();
 		TakeScreenshot("C:\\Users\\91805\\OneDrive\\Documents\\Make My Trip\\Travellerdetailpage.png");
 		
-		jsClick(getContinue(), driver);
+		jsClick(getContinue());
 		sleep();
 		TakeScreenshot("C:\\Users\\91805\\OneDrive\\Documents\\Make My Trip\\Payment.png");
 		System.out.println("Ticket booked successfully");
 	}
 	
-	
-	
-	public WebElement getTravellerName() {
-		return TravellerName;
-	}
+public WebElement getTravellerName() {
+	return TravellerName;
+}
 	
 public WebElement getTravellerAge() {
 	return TravellerAge;
@@ -92,10 +88,5 @@ public WebElement getTripAssured() {
 public WebElement getContinue() {
 	return Continue;
 }
-
-
-
-
-
 
 }

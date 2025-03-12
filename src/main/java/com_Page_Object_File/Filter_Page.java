@@ -68,19 +68,10 @@ public class Filter_Page extends Utility_File_MMT{
 	}
 	System.out.println("After Sorted List :" +PriceDetail);
 	System.out.println("Lowest bus ticket price :" +PriceDetail.get(0));
-	
-//	List<Integer> Sortprice = new ArrayList<Integer>();
-//	for(WebElement element: Price) {
-//		String pricetext = element.getText().replaceAll(",", "");
-//		Sortprice.add(Integer.parseInt(pricetext));
-//	}
-//	Collections.sort(Sortprice);
-//	System.out.println("Sorted Price :" + Sortprice);
-//	System.out.println("Lowest bus ticket price :" +Sortprice.get(0));
 		
-	jsClick(getCheapest(), driver);	
-	Click(getSelectSeat());
-	Click(getSelectSleeperSeat());
+	jsClick(getCheapest());	
+	jsClick(getSelectSeat());
+	jsClick(getSelectSleeperSeat());
 	sleep();
 	TakeScreenshot("C:\\Users\\91805\\OneDrive\\Documents\\Make My Trip\\Filter.png");
 	Click(getContinueSeatBooking());
@@ -132,3 +123,14 @@ public class Filter_Page extends Utility_File_MMT{
 
 
 }
+
+
+
+//List<Integer> Sortprice = new ArrayList<Integer>();
+//for(WebElement element: Price) {
+//	String pricetext = element.getText().replaceAll(",", "");
+//	Sortprice.add(Integer.parseInt(pricetext));
+//}
+//Collections.sort(Sortprice);
+//System.out.println("Sorted Price :" + Sortprice);
+//System.out.println("Lowest bus ticket price :" +Sortprice.get(0));

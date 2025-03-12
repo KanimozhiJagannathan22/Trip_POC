@@ -12,6 +12,8 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class Utility_File_MMT {
@@ -21,11 +23,9 @@ public class Utility_File_MMT {
 	public static void Browserlaunch() {
 		driver = new ChromeDriver();
 	}
-
-	public static void url(WebDriver driver, String url) {
+	public static void url(String url) {
 		driver.get(url);		
 	}
-	
 	public static void Click(WebElement element) {
 		element.click();
 	}
@@ -35,15 +35,40 @@ public class Utility_File_MMT {
 	public static void Enter_Data(WebElement element, String value) {
 	 element.sendKeys(value);
 	}
-	public static void Maximize(WebDriver driver) {
+	public static void Maximize() {
 		driver.manage().window().maximize(); 
 	}
 
-	public static void implicitWait(WebDriver driver) {
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-	}
+	
+	public static void waitForTextToBePresentInElement(WebElement element, String value) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.textToBePresentInElementValue(element, value));
+    }
+	
+	
+	public WebElement waitForElementToBeClickable(WebElement element) {
+		 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
 
-	public static void jsClick(WebElement element, WebDriver driver) {
+
+    public WebElement waitForPresenceOfElement(org.openqa.selenium.By locator) {
+    	 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
+    
+    public WebElement waitForVisibility(WebElement element) {
+    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        return wait.until(ExpectedConditions.visibilityOf(element));
+    }
+	public static void implicitWait() {
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+	}
+	
+	
+	
+
+	public static void jsClick(WebElement element) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click();", element);
 	}
@@ -52,12 +77,12 @@ public class Utility_File_MMT {
 		Thread.sleep(5000);
 	}
 	
-	public static void frame(WebDriver driver) {
+	public static void frame() {
 		WebElement iframe = driver.findElement(By.id("iframe1"));
         driver.switchTo().frame(iframe);
 	}
 	
-	public static void jsScroll(WebDriver driver, WebElement element) {
+	public static void jsScroll(WebElement element) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView();", element);
 	}
@@ -69,8 +94,11 @@ public class Utility_File_MMT {
 		FileUtils.copyFile(source, destination);
 	}
 	
-	public static void quit(WebDriver driver) {
+	public static void quit() {
 		driver.quit();
 	}
+	
+	
+	
 	
 }

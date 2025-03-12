@@ -9,20 +9,24 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src\\test\\java\\Features\\redbus.feature", glue = "Stepdef", dryRun = false, monochrome = false,
-                   plugin = {"pretty","html: MakeMyTrip.html"})
+                   plugin = {"pretty",
+                		    "html: MakeMyTrip.html",
+                	        "json:MakeMyTrip.json",
+                	        "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"})
 
 public class TestRunner extends Utility_File_MMT{
 	
+
 	@BeforeClass
 	public static void start() {
 		Browserlaunch();
-		Maximize(driver);
-		implicitWait(driver);
+		Maximize();
+		implicitWait();
 	}
 	
 	@AfterClass
 	public static void end() {
-	 quit(driver);	
+	 quit();	
 	}
 
 }

@@ -2,6 +2,7 @@ package com_Page_Object_File;
 
 import java.io.IOException;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -31,23 +32,22 @@ private WebDriver driver;
 		this.driver = driver1;
 		PageFactory.initElements(driver, this);
 	}
-	
-	
+		
 	public void ClickLoginPopup() {
-		  url(driver, "https://www.makemytrip.com/");
-		  implicitWait(driver);
+		  url("https://www.makemytrip.com/");
+		  implicitWait();
 		  Click(getLoginpopup());
 	}
 	
 	public void Enter_From_City() throws InterruptedException {
-		Click(getFrom());
-		Enter_Data(getSearchFromCity(), "Chennai");
+		Click(waitForElementToBeClickable(getFrom()));
+		Enter_Data(waitForVisibility(getSearchFromCity()), "Chennai");
 		sleep();
-		Click(getFromcity());	
+		Click(waitForElementToBeClickable(getFromcity()));	
 	}
 	
 	public void Enter_To_City() throws InterruptedException {
-		jsClick(getTo(), driver);
+		jsClick(getTo());
 		Enter_Data(getSearchFromTo(), "Bangalore");
 		sleep();
 		Click(getToCity());
@@ -60,7 +60,6 @@ private WebDriver driver;
 		Click(getSearchbuses());
 		sleep();
 	}
-	
 	
 	public WebElement getLoginpopup() {
 		return loginpopup;
